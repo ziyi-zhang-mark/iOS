@@ -1,4 +1,4 @@
-# swift
+# Swift
 
 ```swift
 // define variable
@@ -42,9 +42,9 @@ let sum = addTwoNumbers(5, 5)
 # Class
 ```swift
 class Employee {
-  var name = "name"
-  var salary = 0
-  var role = ""
+    var name = "name"
+    var salary = 0
+    var role = ""
     
     func doWork() {
         print("My name is \(name) and I'm doing the work")
