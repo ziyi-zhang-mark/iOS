@@ -8,22 +8,56 @@ var firstname = "Tom"
 let lastname = "Smith" 
 ```
 
-# Data Types:
+## Data Types:
 - String
 - Int
 - Float
 - Double
 - Bool
+- Array
+- Dictionary
+- Struct
 
-# Function
+## Struct
+```
+struct MyStruct {}
+
+struct Town {
+    let name: String
+    var citizens: [String]
+    var resources: [String: Int]
+    
+    // initialiser
+    init(name: String, citizens: [String], resources: [String: Int]) {
+        self.name = name
+        self.citizens = citizens
+        self.resources = resources
+    }
+    
+    // method
+    func fortify() {
+        print("Defenses increased!");
+    }
+    
+    // can only change a property within struct using mutating
+    mutating func harvestRice() {
+        resources["Rice"] = 100
+    }
+}
+var anotherTown = Town(name: "Nameless Island", citizens: ["A", "B"], resources: ["Coconuts": 100])
+// change a property outside struct is fine
+anotherTown.citizens.append("C");
+```
+
+## Function
 ```swift
 var firstName:String = "Tom"
 for counter in 1...5 {}
 
-func addTwoNumbers() {}
+func addTwoNumbers() { // do stuff }
 
 // parameter label
-func addTwoNumbers(using number1:Int, and number2:Int ) -> Int {
+func addTwoNumbers(using number1: Int, and number2: Int ) -> Int {
     return number1 + number2
 }
 let sum = addTwoNumbers(using: 5, and: 5)
@@ -33,13 +67,13 @@ func addTwoNumbers(number1: Int, number2: Int ) -> Int {
 }
 let sum = addTwoNumbers(number1: 5, number2: 5)
 
-func addTwoNumbers(_ number1:Int, _ number2:Int ) -> Int {
+func addTwoNumbers(_ number1: Int, _ number2: Int ) -> Int {
     return number1 + number2
 }
 let sum = addTwoNumbers(5, 5)
 ```
 
-# Class
+## Class
 ```swift
 class Employee {
     var name = "name"
@@ -124,25 +158,29 @@ print(employee.name) // Mark
 print(employee.role) // Analyst
 ```
 
-# Optional
+## Optional
 ```swift
-var a:Int? = nil      // declare an optional, int or nil
-var b:String? = nil   // declare an optional, string or nil
+var a: Int? = nil      // declare an optional, int or nil
+var b: String? = nil   // declare an optional, string or nil
 
 // c can store a string or nil, but it is wrapped
-var c:String?         // default is nil - RECOMMENDED way to declare
+var c: String?         // default is nil - RECOMMENDED way to declare
+
 // d can store a string or nil, but it is already unwrapped
-var d:String!         // 更容易出错，d.method() 时不会再检查 d 是不是 nil
+var d: String!         // 更容易出错，d.method() 时不会再检查 d 是不是 nil
+
+let eggTimes = ["Soft": 5, "Medium": 7, "Hard": 12]
+let hardness = sender.currentTitle!
+let result = eggTimes[hardness]!  // type of result is Int
 
 class  XmasPresent {
     func surprise() -> Int {
         return Int.random(in: 1...10)
     }
 }
-
 let present:XmasPresent? = XmasPresent()
 
-// check the optional to see if it contains an object
+// ways to check the optional to see if it contains an object
 // 1. check first and then unwrap
 if present != nil {
     // have to first unwrap the optional
@@ -161,13 +199,15 @@ if let actualPresent = present {
 present?.surprise()
 ```
 
-# Properties
+## Properties
+```
 // calculated properties
 var bonus:Int {
   return teamSize * 1000
 }
+```
 
-# Designated & Convenience Initializer
+## Designated & Convenience Initializer
 ```swift
 class Person {
     var name:String
@@ -198,7 +238,7 @@ print(a.networth)   // nil
 let b = Person("male", 12222)
 ```
 
-# Array
+## Array
 ```swift
 let array = ["Dog", "Car", "Bird"]
 for counter in 0...array.count - 1 {
@@ -210,7 +250,7 @@ for item in array {
 }
 
 // array type
-var myArray:[String] = ["Dog", "Car", "Bird"]
+var myArray: [String] = ["Dog", "Car", "Bird"]
 
 // how to declare an empty array
 var emptyArray:[String] = []
@@ -222,10 +262,12 @@ myArray += ["Frog", "Bear"]
 // Frog Dog Car Bird Frog Bear
 ```
 
-# Dictionary
+## Dictionary
 ```swift
-// declare a distionary
+// declare a dictionary
 var myDictionary = [String:String]()
+let eggTimes = ["Soft": 5, "Medium": 7, "Hard": 12]
+var dict: [String: Int] = ["Key" : 123]
 
 // assign data into a distionary
 myDictionary["SJD 293"] = "Red Ferrari"
