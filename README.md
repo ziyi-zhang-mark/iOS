@@ -18,6 +18,30 @@ let lastname = "Smith"
 - Dictionary
 - Struct
 
+## Function
+```swift
+var firstName:String = "Tom"
+for counter in 1...5 {}
+
+func addTwoNumbers() { // do stuff }
+
+// parameter label
+func addTwoNumbers(using number1: Int, and number2: Int ) -> Int {
+    return number1 + number2
+}
+let sum = addTwoNumbers(using: 5, and: 5)
+
+func addTwoNumbers(number1: Int, number2: Int ) -> Int {
+    return number1 + number2
+}
+let sum = addTwoNumbers(number1: 5, number2: 5)
+
+func addTwoNumbers(_ number1: Int, _ number2: Int ) -> Int {
+    return number1 + number2
+}
+let sum = addTwoNumbers(5, 5)
+```
+
 ## Struct
 ```
 struct MyStruct {}
@@ -49,30 +73,6 @@ var anotherTown = Town(name: "Nameless Island", citizens: ["A", "B"], resources:
 anotherTown.citizens.append("C");
 ```
 
-## Function
-```swift
-var firstName:String = "Tom"
-for counter in 1...5 {}
-
-func addTwoNumbers() { // do stuff }
-
-// parameter label
-func addTwoNumbers(using number1: Int, and number2: Int ) -> Int {
-    return number1 + number2
-}
-let sum = addTwoNumbers(using: 5, and: 5)
-
-func addTwoNumbers(number1: Int, number2: Int ) -> Int {
-    return number1 + number2
-}
-let sum = addTwoNumbers(number1: 5, number2: 5)
-
-func addTwoNumbers(_ number1: Int, _ number2: Int ) -> Int {
-    return number1 + number2
-}
-let sum = addTwoNumbers(5, 5)
-```
-
 ## Class
 ```swift
 class Employee {
@@ -85,7 +85,9 @@ class Employee {
         salary += 1;
     }
 }
+let employee = Employee()
 
+// inheritance
 class Manager: Employee {
     var teamSize = 0
     
@@ -100,11 +102,11 @@ class Manager: Employee {
     }
 }
 
-let c: Employee = Employee()
-c.name = "Tom"
-print(c.name)
-c.doWork()
-print(c.salary)
+let e: Employee = Employee()
+e.name = "Tom"
+print(e.name)
+e.doWork()
+print(e.salary)
 
 
 var m = Manager()
@@ -135,14 +137,15 @@ let p1 = Person("Tom")
 print(p1.name)      // Tom
 
 
-class Employee:Person {
+class Employee: Person {
   var salary = 0
   var role = ""
     
   override init() {
       super.init()
   }
-  override init(_ name:String) {
+  
+  override init(_ name: String) {
       super.init(name)
       self.role = "Analyst"
   }
@@ -156,6 +159,28 @@ class Employee:Person {
 let employee = Employee("Mark")     // Employee inherit init() from Person class as well
 print(employee.name) // Mark
 print(employee.role) // Analyst
+```
+
+## Class & Struct
+```swift
+// Enemy - class - pass by reference
+// 1. inheritance. 2. pass by reference
+let skeleton1 = Enemy(health: 100, attackStrength: 10)
+let skeleton2 = skeleton1
+
+skeleton1.takeDamage(amount: 10)
+skeleton1.takeDamage(amount: 10)
+skeleton2.takeDamage(amount: 10)
+print(skeleton1.health)         // 80
+print(skeleton2.health)         // 90
+
+// Enemy - struct
+// 1. immutable. 2. pass by value
+var skeleton1 = Enemy(health: 100, attackStrength: 10)
+var skeleton2 = skeleton1
+
+skeleton1.takeDamage(amount: 10)
+print(skeleton2.health)         // 90
 ```
 
 ## Optional
@@ -178,23 +203,38 @@ class  XmasPresent {
         return Int.random(in: 1...10)
     }
 }
-let present:XmasPresent? = XmasPresent()
+let present: XmasPresent? = XmasPresent()
 
 // ways to check the optional to see if it contains an object
-// 1. check first and then unwrap
-if present != nil {
+
+let myOptional: String?
+myOptional = nil
+
+// 1. force unwrapping
+let text: String = myOptional!      // will crash if the optional is nil
+
+// 2. check first and then unwrap
+if myOptional != nil {
     // have to first unwrap the optional
-    print(present!.surprise())
+    let text: String = myOptional!
+} else {
+    print("myOptional was found to be nil")
 }
 
-// 2. Optional binding
+// 3. optional binding
 // if present is nil, pass the if statement
 // if present is not nil, unwrap it and assign it to actualPresent
-if let actualPresent = present {
-    print(actualPresent.surprise())
+if let safeOptional = myOptional {
+    let text: String = safeOptional
+    print(safeOptional)
+} else {
+    print("myOptional was found to be nil")
 }
 
-// 3. Optional chaining
+// 4. nil coalescing operator
+let text: String = myOptional ?? "default value"
+
+// 5. optional chaining
 // if present is nil, nothing happens, otherwise, run the statement
 present?.surprise()
 ```
