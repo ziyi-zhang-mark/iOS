@@ -325,3 +325,104 @@ for (key, value) in myDictionary {
     print("\(key) is a \(value)")
 }
 ```
+
+## Protocols
+```swift
+// define the protocol
+protocol MyProtocol {
+    // Define requirements
+}
+
+// adopting the protocol in both struct and class
+struct MyStruct: FirstProtocol, SecondProtocol {}
+class MyClass: SuperClass, FirstProtocol {}
+
+
+protocol CanFly {
+    func fly()
+}
+
+class Bird {
+    var isFemale = true
+    func layEgg() {
+        if female { ... }
+    }
+}
+
+class Eagle: Bird, CanFLy {
+    func fly() { ... }
+    func soar() { ... }
+}
+
+class Penguin: Bird {
+    func swim() { ... }
+}
+
+// struct instead of class, because it does not need to inherit from any parent class
+struct Airplane: CanFly {
+    func fly() { ... }
+}
+
+struct FlyingMuseum {
+    func flyingDemo(flyingObject: CanFly) {
+        flyingObject.fly()
+    }
+}
+```
+
+## Delegate Design Pattern - with Protocol
+```swift
+protocol AdvancedLifeSupport {
+    func performCPR()
+}
+
+// similar to TextField class
+class EmergencyCallHandler {
+    var delegate: AdvancedLifeSupport?
+    
+    func assessSituation() { ... }
+    
+    func medicalEmergency() {
+        delegate?.performCPR()
+    }
+}
+
+struct Paramedic: AdvancedLifeSupport {
+    // when the paramedic is going on call  
+    init(handler: EmergencyCallHandler) {
+        handler.delegate = self
+    }
+
+    func performCPR() { // do stuff... }
+}
+
+class Doctor: AdvancedLifeSupport {
+    init(handler: EmergencyCallHandler) {
+        handler.delegate = self
+    }
+    
+    func performCPR() { // do stuff... }
+    func useStethescope() { ... }                                                                       
+}
+
+class Surgeon: Doctor {
+    override func performCPR() {
+        super.performCPR()
+        // do more stuff...
+    }
+    
+    func useElectricDrill() { ... }
+}
+
+let emilio = EmergencyCallHandler()
+let pete = Paramedic(handler: emilio)
+// or let angela = Surgeon(handler: emilio)
+
+emilio.assessSituation()
+emilio.medicalEmergency()
+```
+
+OpenWeather
+zhangziyi  markzhang.800@gmail.com
+
+
