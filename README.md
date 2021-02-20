@@ -372,11 +372,13 @@ struct FlyingMuseum {
 
 ## Delegate Design Pattern - with Protocol
 ```swift
+// define the required func in protocol, no implementation
 protocol AdvancedLifeSupport {
     func performCPR()
 }
 
 // similar to TextField class
+// EmergencyCallHandler don't care who can do performCPR, as long as he adopts AdvancedLifeSupport protocol
 class EmergencyCallHandler {
     var delegate: AdvancedLifeSupport?
     
@@ -387,13 +389,15 @@ class EmergencyCallHandler {
     }
 }
 
+// Paramedic adopts the AdvancedLifeSupport protocol
 struct Paramedic: AdvancedLifeSupport {
     // when the paramedic is going on call  
     init(handler: EmergencyCallHandler) {
+        // set the handler's delegate to the paramedic self
         handler.delegate = self
     }
 
-    func performCPR() { // do stuff... }
+    func performCPR() { // implementation... }
 }
 
 class Doctor: AdvancedLifeSupport {
@@ -401,14 +405,14 @@ class Doctor: AdvancedLifeSupport {
         handler.delegate = self
     }
     
-    func performCPR() { // do stuff... }
+    func performCPR() { // implementation... }
     func useStethescope() { ... }                                                                       
 }
 
 class Surgeon: Doctor {
     override func performCPR() {
         super.performCPR()
-        // do more stuff...
+        // do more stuff on behalf of Surgeon...
     }
     
     func useElectricDrill() { ... }
