@@ -426,6 +426,46 @@ emilio.assessSituation()
 emilio.medicalEmergency()
 ```
 
+## Closure
+```swift
+func calculator(n1: Int, n2: Int, operation: (Int, Int) -> Int) -> Int {
+    return operation(n1, n2)
+}
+
+func add(n1: Int, n2: Int) -> Int {
+    return n1 + n2
+}
+
+func multiply(n1: Int, n2: Int) -> Int {
+    return n1 * n2
+}
+
+calculator(n1: 2, n2: 3, operation: add)         // 5
+calculator(n1: 2, n2: 3, operation: multiply)    // 6
+
+// closure syntax
+{ (n1: Int, n2: Int) -> Int in
+    return n1 * n2
+}
+calculator(n1: 2, n2: 3, operation: { (n1: Int, n2: Int) -> Int in
+    return n1 * n2
+})
+calculator(n1: 2, n2: 3, operation: {(no1, no2) in no1 * no2})      // 6
+
+
+let array = [1, 2, 3, 4, 5, 6]
+func addOne (n1: Int) -> Int {
+    return n1 + 1
+}
+array.map(addOne)
+array.map({ (n1: Int) -> Int in
+    return n1 + 1
+})
+array.map({ n1 in n1 + 1 })
+array.map{$0 + 1}
+
+```
+
 OpenWeather
 zhangziyi  markzhang.800@gmail.com
 
