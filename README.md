@@ -183,6 +183,54 @@ skeleton1.takeDamage(amount: 10)
 print(skeleton2.health)         // 90
 ```
 
+## Extension
+```
+extension SomeType {
+    // add new functionality
+}
+extension Double {
+    func round(to places: Int) -> Double {
+        let precisionNumber = pow(10, Double(places))
+        var n = self  // current value of the double
+        n = n * precisionNumber
+        n.round()
+        n = n / precisionNumber
+        return n
+    }
+}
+
+var myDouble = 3.14159
+let myRoundedDouble = String(format: "%.1f", myDouble)
+myDouble.round(to: 2)
+
+
+extension UIButton {
+    func makeCircle() {
+        self.clipsToBounds = true
+        self.layer.cornerRadius = self.frame.size.width / 2
+    }
+}
+let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+button.backgroundColor = .red
+button.makeCircle()
+
+
+extension SomeProtocol {
+    // define default behaviour
+}
+protocol CanFly {
+    func fly()
+}
+extension CanFly {
+    func fly() {
+        print("The obj can take off into the air")
+    }
+}
+struct Airplane: CanFly {}
+let myPlane = Airplane()
+myPlane.fly()   // The obj can take off into the air
+```
+
 ## Optional
 ```swift
 var a: Int? = nil      // declare an optional, int or nil
