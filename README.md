@@ -1,11 +1,17 @@
 # Swift
 
+camelCase
+
 ```swift
-// define variable
+// define a variable
 var firstname = "Tom"
 
 // constent value, cannot be assigned to other value
 let lastname = "Smith" 
+
+a...b   // closed range
+a..<b   // 3 excluded
+...b    // one sided range, upto b, b included
 ```
 
 ## Data Types:
@@ -20,10 +26,12 @@ let lastname = "Smith"
 
 ## Function
 ```swift
-var firstName:String = "Tom"
-for counter in 1...5 {}
+// Typed variable 
+var firstName: String = "Tom"
 
-func addTwoNumbers() { // do stuff }
+for counter in 1...5 { ... }
+
+func addTwoNumbers() { ... }
 
 // parameter label
 func addTwoNumbers(using number1: Int, and number2: Int ) -> Int {
@@ -243,8 +251,8 @@ var c: String?         // default is nil - RECOMMENDED way to declare
 var d: String!         // 更容易出错，d.method() 时不会再检查 d 是不是 nil
 
 let eggTimes = ["Soft": 5, "Medium": 7, "Hard": 12]
-let hardness = sender.currentTitle!
-let result = eggTimes[hardness]!  // type of result is Int
+let hardness = sender.currentTitle!    // optional to string
+let result = eggTimes[hardness]!  // result is Int type
 
 class  XmasPresent {
     func surprise() -> Int {
@@ -350,12 +358,27 @@ myArray += ["Frog", "Bear"]
 // Frog Dog Car Bird Frog Bear
 ```
 
+## Switch
+```swift
+switch hardness {
+    case "Soft":
+        print(5)
+    case "Medium":
+        print(7)
+    case "Hard":
+        print(12)
+    default:
+        print("Error")
+}
+```
+
 ## Dictionary
 ```swift
 // declare a dictionary
-var myDictionary = [String:String]()
+var myDictionary = [String: String]()
 let eggTimes = ["Soft": 5, "Medium": 7, "Hard": 12]
 var dict: [String: Int] = ["Key" : 123]
+dict["Key"]    // 123
 
 // assign data into a distionary
 myDictionary["SJD 293"] = "Red Ferrari"
