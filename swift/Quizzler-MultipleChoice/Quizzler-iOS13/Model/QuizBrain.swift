@@ -1,18 +1,6 @@
-//
-//  QuizBrain.swift
-//  Quizzler-iOS13
-//
-//  Created by Angela Yu on 08/08/2019.
-//  Copyright © 2019 The App Brewery. All rights reserved.
-//
-
 import Foundation
 
 struct QuizBrain {
-    
-    var questionNumber = 0
-    var score = 0
-    
     let quiz = [
         Question(q: "Which is the largest organ in the human body?", a: ["Heart", "Skin", "Large Intestine"], correctAnswer: "Skin"),
         Question(q: "Five dollars is worth how many nickels?", a: ["25", "50", "100"], correctAnswer: "100"),
@@ -26,11 +14,13 @@ struct QuizBrain {
         Question(q: "Where is Tasmania located?", a: ["Indonesia", "Australia", "Scotland"], correctAnswer: "Australia")
     ]
     
+    var questionNumber = 0
+    var score = 0
+    
     func getQuestionText() -> String {
         return quiz[questionNumber].text
     }
     
-    //Need a way of fetching the answer choices.
     func getAnswers() -> [String] {
         return quiz[questionNumber].answers
     }
@@ -43,17 +33,17 @@ struct QuizBrain {
         return score
     }
     
-     mutating func nextQuestion() {
+    mutating func nextQuestion() {
         
         if questionNumber + 1 < quiz.count {
             questionNumber += 1
         } else {
             questionNumber = 0
+            score = 0
         }
     }
     
     mutating func checkAnswer(userAnswer: String) -> Bool {
-        //Need to change answer to rightAnswer here. 
         if userAnswer == quiz[questionNumber].rightAnswer {
             score += 1
             return true
