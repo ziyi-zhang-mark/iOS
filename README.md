@@ -53,6 +53,7 @@ let sum = addTwoNumbers(5, 5)
 ## Struct
 ```
 struct MyStruct {}
+MyStruct()
 
 struct Town {
     let name: String
@@ -71,14 +72,14 @@ struct Town {
         print("Defenses increased!");
     }
     
-    // can only change a property within struct using mutating
+    // can only change a property using mutating within struct
     mutating func harvestRice() {
         resources["Rice"] = 100
     }
 }
-var anotherTown = Town(name: "Nameless Island", citizens: ["A", "B"], resources: ["Coconuts": 100])
+var town = Town(name: "Nameless Island", citizens: ["A", "B"], resources: ["Coconuts": 100])
 // change a property outside struct is fine
-anotherTown.citizens.append("C");
+town.citizens.append("C");
 ```
 
 ## Class
@@ -171,7 +172,7 @@ print(employee.role) // Analyst
 
 ## Class & Struct
 ```swift
-// Enemy - class - pass by reference
+// Enemy - class
 // 1. inheritance. 2. pass by reference
 let skeleton1 = Enemy(health: 100, attackStrength: 10)
 let skeleton2 = skeleton1
@@ -180,15 +181,17 @@ skeleton1.takeDamage(amount: 10)
 skeleton1.takeDamage(amount: 10)
 skeleton2.takeDamage(amount: 10)
 print(skeleton1.health)         // 80
-print(skeleton2.health)         // 90
+print(skeleton2.health)         // 70
 
 // Enemy - struct
 // 1. immutable. 2. pass by value
-var skeleton1 = Enemy(health: 100, attackStrength: 10)
+var skeleton1 = Enemy(health: 100, attackStrength: 10)  // has to be var
 var skeleton2 = skeleton1
 
-skeleton1.takeDamage(amount: 10)
-print(skeleton2.health)         // 90
+skeleton1.takeDamage(amount: 10)  // 90
+print(skeleton2.health)         // 100
+
+Use struct as default
 ```
 
 ## Extension
