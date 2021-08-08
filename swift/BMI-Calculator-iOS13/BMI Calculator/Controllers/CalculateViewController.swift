@@ -3,7 +3,6 @@
 //  BMI Calculator
 //
 //  Created by Angela Yu on 21/08/2019.
-//  Copyright © 2019 Angela Yu. All rights reserved.
 //
 
 import UIKit
@@ -21,7 +20,6 @@ class CalculateViewController: UIViewController {
         super.viewDidLoad()
         heightSlider.value = 1.5
         weightSlider.value = 100
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func heightSliderChanged(_ sender: UISlider) {

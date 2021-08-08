@@ -55,7 +55,7 @@ struct WeatherManager {
         }
     }
     
-    func parseJSON(_ weatherData: Data) ->WeatherModel? {
+    func parseJSON(_ weatherData: Data) -> WeatherModel? {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
@@ -72,6 +72,4 @@ struct WeatherManager {
             return nil
         }
     }
-    
-    
 }

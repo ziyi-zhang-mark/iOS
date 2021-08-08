@@ -3,14 +3,11 @@
 //  BMI Calculator
 //
 //  Created by Ziyi Zhang on 2/14/21.
-//  Copyright © 2021 Angela Yu. All rights reserved.
 //
 
 import UIKit
 
 struct CalculatorBrain {
-    
-    // optional
     var bmi: BMI?
     
     func getBMIValue() -> String {
@@ -26,6 +23,7 @@ struct CalculatorBrain {
         return bmi?.color ?? UIColor.blue
     }
     
+    // mutating - need to edit variable bmi in this struct
     mutating func calculateBMI(height: Float, weight: Float) {
         let bmiValue = weight / (height * height)
         if bmiValue < 18.5 {
