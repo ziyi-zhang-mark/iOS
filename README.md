@@ -594,5 +594,95 @@ struct WeatherModel {
 }
 ```
 
+## as, as?, as!
+
+```swift
+class Animal {
+    var name: String
+
+    init(name: String) {
+        self.name = name
+    }
+}
+class Human: Animal {
+    func code() {...}
+}
+class Fish: Animal {
+    func breathUnderWater() {...}
+}
+
+let h1 = Human(name: "human 1")
+let h2 = Human(name: "human 2")
+let f1 = Fish(name: "fish 1")
+
+let neighbours = [h1, h2, f1] // [Animal]
+let neighbour1 = neighbours[0] // Animal
+
+if neighbours[0] is Human {...} // true
+
+func findNemo(from animals: [Animal]) {
+    for animal in animals {
+        if animal is Fish {
+            print(animal.name)
+            let fish = animal as! Fish
+            fish.breathUnderWater()
+        }
+    }
+}
+
+let fish = neighbours[1] as! Fish // run time error: could not cast
+let messageCell = cell as! MessageCell
+
+if let fish = neighbours[1] as? Fish { // fish will be the type Fish? - optional
+    fish.breathUnderWater()
+}
+if let messageCell = cell as? MessageCell {...} else {...}
+
+let newCell = messageCell as UITableViewCell // up casting - convert to the superclass
+```
+
+## Any, AnyObject, NSObject
+
+- Any: all objects
+- AnyObject: objects derived from classes
+- NSObject: foundation objects only
+
+```swift
+let neighbours = [h1, h2, f1] // [Animal]
+let num = 12
+let neighbours: [Any] = [h1, h2, f1, num] // type of [Any]
+// cannot convert Int to AnyObject, Int is struct, rather than class
+let neighbours: [AnyObject] = [h1, h2, f1, num]
+
+let num: NSNumber = 12
+let word: NSString = "abc"
+let array: [NSObject] = [num, word]
+```
+
+## ViewController LifeCycle
+
+- viewDidLoad() - IBOutlet/IBAction is created and connected, called only once
+- viewWillAppear() - just before the view is presented on the screen
+- viewDidAppear() - user is able to see the view
+- viewWillDisappear() - when navigate back or dismiss the view
+- viewDidDisappear() - does not mean the view is destroyed
+
+## App LifeCycle
+
+```swift
+// open the app
+application(\_:didFinishLaunchingWithOptions:)
+scene(\_:willConnectTo:options:)
+viewDidLoad()
+viewWillAppear()
+sceneWillEnterForeground()
+sceneDidBecomeActive()
+viewDidAppear()
+// bring the app to multitasking screen
+sceneWillResignActive()
+```
+
+---
+
 OpenWeather
 zhangziyi markzhang.800@gmail.com
