@@ -678,8 +678,17 @@ viewWillAppear()
 sceneWillEnterForeground()
 sceneDidBecomeActive()
 viewDidAppear()
-// bring the app to multitasking screen
+// bring the app to the multitasking screen
 sceneWillResignActive()
+// navigate to another app
+sceneDidEnterBackground()
+// relaunch the app
+sceneWillEnterForeground()
+sceneDidBecomeActive()
+// kill the app
+sceneWillResignActive()
+sceneDidDisconnect()
+application(_:didDiscardSceneSessions:)
 ```
 
 ---

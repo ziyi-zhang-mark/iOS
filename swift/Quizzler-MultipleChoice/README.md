@@ -1,7 +1,4 @@
-
-![App Brewery Banner](Documentation/AppBreweryBanner.png)
-
-#  Quizzler
+# Quizzler
 
 ## Our Goal
 
@@ -9,19 +6,18 @@ The goal of this tutorial is to take you one step further in your journey of bec
 
 ## What you will create
 
-You will program a trivia quiz app. If you have another field of expertise such as law or medicine, you’ll be glad to know that multiple choice question apps are one of the most popular types of educational apps on the App Store! 
+You will program a trivia quiz app. If you have another field of expertise such as law or medicine, you’ll be glad to know that multiple choice question apps are one of the most popular types of educational apps on the App Store!
 
 ## What you will learn
 
-* What is a design pattern and how is it used in programming.
-* How to use the Model-View-Controller or MVC pattern for app development.
-* Swift structures and functions with outputs.
-* Learn about Object Oriented Programming.
-* Learn to use UIAlertControllers to display popups to the user.
-* How to refactor code and stay organised.
-* Learn about object initialisation. 
-* How to programmatically change UI elements such as Labels and Views.
-
+- What is a design pattern and how is it used in programming.
+- How to use the Model-View-Controller or MVC pattern for app development.
+- Swift structures and functions with outputs.
+- Learn about Object Oriented Programming.
+- Learn to use UIAlertControllers to display popups to the user.
+- How to refactor code and stay organised.
+- Learn about object initialisation.
+- How to programmatically change UI elements such as Labels and Views.
 
 ## Default Quiz
 
@@ -53,9 +49,6 @@ You will program a trivia quiz app. If you have another field of expertise such 
         Question(q: "What alcoholic drink is made from molasses?", a: ["Rum", "Whisky", "Gin"], correctAnswer: "Rum"),
         Question(q: "What type of animal was Harambe?", a: ["Panda", "Gorilla", "Crocodile"], correctAnswer: "Gorilla"),
         Question(q: "Where is Tasmania located?", a: ["Indonesia", "Australia", "Scotland"], correctAnswer: "Australia")
-```        
+```
 
-
->This is a companion project to The App Brewery's Complete App Development Bootcamp, check out the full course at [www.appbrewery.co](https://www.appbrewery.co/)
-
-![End Banner](Documentation/readme-end-banner.png)
+> This is a companion project to The App Brewery's Complete App Development Bootcamp, check out the full course at [www.appbrewery.co](https://www.appbrewery.co/)

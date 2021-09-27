@@ -2,9 +2,6 @@
 //  WeatherModel.swift
 //  Clima
 //
-//  Created by Ziyi Zhang on 2/25/21.
-//  Copyright © 2021 App Brewery. All rights reserved.
-//
 
 import Foundation
 

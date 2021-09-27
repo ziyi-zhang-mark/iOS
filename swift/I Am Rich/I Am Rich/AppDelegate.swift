@@ -2,8 +2,6 @@
 //  AppDelegate.swift
 //  I Am Rich
 //
-//  Created by Ziyi Zhang on 2/1/21.
-//
 
 import UIKit
 

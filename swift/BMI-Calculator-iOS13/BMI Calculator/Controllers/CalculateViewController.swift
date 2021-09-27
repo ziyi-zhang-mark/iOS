@@ -2,8 +2,6 @@
 //  CalculateViewController.swift
 //  BMI Calculator
 //
-//  Created by Angela Yu on 21/08/2019.
-//
 
 import UIKit
 
