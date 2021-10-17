@@ -178,7 +178,10 @@ print(employee.role) // Analyst
 
 ```swift
 // Enemy - class
-// 1. inheritance. 2. pass by reference
+// 1. mutable
+// 2. can inherit. 
+// 3. copy by reference, live in heap
+// 4. work with objC code
 let skeleton1 = Enemy(health: 100, attackStrength: 10)
 let skeleton2 = skeleton1
 
@@ -189,7 +192,10 @@ print(skeleton1.health)         // 80
 print(skeleton2.health)         // 70
 
 // Enemy - struct
-// 1. immutable, cannot inherit. 2. pass by value
+// 1. immutable
+// 2. cannot inherit.
+// 3. copy by value, live in stack
+// 4. deep copies/no memory leaks/thread safe
 var skeleton1 = Enemy(health: 100, attackStrength: 10)  // has to be var
 var skeleton2 = skeleton1
 
@@ -689,6 +695,71 @@ sceneDidBecomeActive()
 sceneWillResignActive()
 sceneDidDisconnect()
 application(_:didDiscardSceneSessions:)
+```
+
+## Computed Property
+```swift
+let pizzaInInches: Int = 16
+var numberOfPeople: Int = 12
+let slicesPerPerson: Int = 4
+
+// getter
+// note - var, data type, and return required
+var numberOfSlices: Int {
+    get {
+        return pizzaInInches - 4
+    }
+}
+
+var numberOfPizza: Int {
+    get {
+        let numberOfPeopleFedPerPizza =  numberOfSlides / slicesPerPerson
+        return numberOfPeople / numberOfPeopleFedPerPizza
+    }
+    set {
+        let totalSlices = numberOfSlices * newValue
+        numberOfProple = totalSlices / slidesPerPerson // numberOfPeople will need to be var
+    }
+}
+numberOfPizza = 4
+print(numberOfPeople) // 12
+```
+
+## Observed Property
+```swift
+var pizzaInInches: Int = 10 {
+    willSet {
+        print(pizzaInInches) // 10
+        print(newValue) // 8
+    }
+    didSet {
+        print(oldValue) // 10
+        print(pizzaInInches) // 8
+    }
+}
+pizzaInInches = 8
+```
+
+## Access Level
+```swift
+private - {} block
+fileprivate - file
+internal(default) - inside the current app module
+public - other modules
+open - other modules + allow class or functions to be subclassed or overridden
+```
+
+```swift
+guard let number = Double(displayLabel.text!) else {
+    fatalError("Cannot convert text to a double")
+}
+```
+
+```swift
+Tuple
+let tuple1: (name: String, age: Int)
+tuple1 = (name: "Angela", age: 21)
+print(tuple1.name)
 ```
 
 ---
