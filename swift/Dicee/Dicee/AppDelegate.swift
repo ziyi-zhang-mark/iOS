@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Dicee-iOS13
+//  Dicee
 //
 
 import UIKit
