@@ -1,6 +1,6 @@
 # Swift
 
-camelCase
+camelCase(Swift preffered)/kebab-case/snake_case
 
 ```swift
 // define a variable
@@ -10,8 +10,9 @@ var firstname = "Tom"
 let lastname = "Smith"
 
 a...b   // closed range
-a..<b   // 3 excluded
+a..<b   // b excluded
 ...b    // one sided range, upto b, b included
+Int.randon(in: 1...10)
 ```
 
 ## Data Types:
@@ -21,8 +22,8 @@ a..<b   // 3 excluded
 - Float
 - Double
 - Bool
-- Array
-- Dictionary
+- Array [a, b][1]
+- Dictionary [key: value]
 - Struct
 
 ## Function
