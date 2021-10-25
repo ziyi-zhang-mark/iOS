@@ -56,9 +56,6 @@ let sum = addTwoNumbers(5, 5)
 ## Struct
 
 ```swift
-struct MyStruct {}
-MyStruct()
-
 struct Town {
     let name: String
     var citizens: [String]
@@ -82,8 +79,9 @@ struct Town {
     }
 }
 var town = Town(name: "Nameless Island", citizens: ["A", "B"], resources: ["Coconuts": 100])
-// change a property outside struct is fine
 town.citizens.append("C");
+town.fortify()
+town.harvestRice()
 ```
 
 ## Class

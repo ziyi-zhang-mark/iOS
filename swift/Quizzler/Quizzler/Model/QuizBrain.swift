@@ -29,7 +29,7 @@ struct QuizBrain {
         return Float(questionNumber) / Float(quiz.count)
     }
     
-    mutating func getScore() -> Int {
+    func getScore() -> Int {
         return score
     }
     
