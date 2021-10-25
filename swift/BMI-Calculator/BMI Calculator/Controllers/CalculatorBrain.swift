@@ -18,7 +18,7 @@ struct CalculatorBrain {
     }
     
     func getColor() -> UIColor {
-        return bmi?.color ?? UIColor.blue
+        return bmi?.color ?? UIColor.white
     }
     
     // mutating - need to edit variable bmi in this struct

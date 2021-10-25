@@ -61,7 +61,7 @@ struct Town {
     var citizens: [String]
     var resources: [String: Int]
 
-    // initialiser
+    // initialiser - optional for struct
     init(name: String, citizens: [String], resources: [String: Int]) {
         self.name = name
         self.citizens = citizens
@@ -179,29 +179,29 @@ print(employee.role) // Analyst
 // Enemy - class
 // 1. mutable
 // 2. can inherit. 
-// 3. copy by reference, live in heap
+// 3. passed by reference, live in heap
 // 4. work with objC code
 let skeleton1 = Enemy(health: 100, attackStrength: 10)
 let skeleton2 = skeleton1
 
 skeleton1.takeDamage(amount: 10)
-skeleton1.takeDamage(amount: 10)
 skeleton2.takeDamage(amount: 10)
 print(skeleton1.health)         // 80
-print(skeleton2.health)         // 70
+print(skeleton2.health)         // 80
 
 // Enemy - struct
 // 1. immutable
 // 2. cannot inherit.
-// 3. copy by value, live in stack
+// 3. passed by value, live in stack
 // 4. deep copies/no memory leaks/thread safe
-var skeleton1 = Enemy(health: 100, attackStrength: 10)  // has to be var
-var skeleton2 = skeleton1
+var skeleton1 = Enemy(health: 100, attackStrength: 10)  // HAS TO BE var
+var skeleton2 = skeleton1   // // HAS TO BE var
 
-skeleton1.takeDamage(amount: 10)  // 90
+skeleton1.takeDamage(amount: 10)
+print(skeleton1.health)         // 90
 print(skeleton2.health)         // 100
 
-Use struct as default
+** Use struct as default, use class when inheritance or objc are needed.
 ```
 
 ## Extension
@@ -273,7 +273,7 @@ let eggTimes = ["Soft": 5, "Medium": 7, "Hard": 12]
 let hardness = sender.currentTitle!    // convert optional to string
 let result = eggTimes[hardness]!  // result is Int type
 
-// ways to check the optional to see if it contains an object
+// 5 ways to check an optional to see if it contains an object
 let myOptional: String?
 myOptional = nil
 // 1. force unwrapping

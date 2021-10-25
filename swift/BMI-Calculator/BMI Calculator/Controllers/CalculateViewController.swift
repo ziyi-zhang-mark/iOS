@@ -37,9 +37,9 @@ class CalculateViewController: UIViewController {
         calculatorBrain.calculateBMI(height: height, weight: weight)
         
         // show SecondViewController
-//        let secondVC = SecondViewController()
-//        secondVC.bmiValue = String(format: "%.1f", bmi)
-//        self.present(secondVC, animated: true, completion: nil)
+        // let secondVC = SecondViewController()
+        // secondVC.bmiValue = String(format: "%.1f", bmi)
+        // self.present(secondVC, animated: true, completion: nil)
         
         self.performSegue(withIdentifier: "goToResult", sender: self)
     }
