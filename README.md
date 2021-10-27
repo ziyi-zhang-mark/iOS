@@ -239,7 +239,7 @@ button.makeCircular()
 
 
 extension SomeProtocol {
-    // define default behaviour
+    // can define default behaviour
 }
 
 protocol CanFly {
@@ -253,6 +253,7 @@ extension CanFly {
     }
 }
 struct Airplane: CanFly {}
+
 let myPlane = Airplane()
 myPlane.fly()   // The obj can take off into the air
 ```
@@ -421,12 +422,11 @@ for (key, value) in myDictionary {
 ## Protocols
 
 ```swift
-// define the protocol
 protocol MyProtocol {
     // Define requirements
 }
 
-// adopting the protocol in both struct and class
+// can adopt a protocol in both struct and class
 struct MyStruct: FirstProtocol, SecondProtocol {}
 class MyClass: SuperClass, FirstProtocol {}
 
@@ -456,7 +456,7 @@ struct Airplane: CanFly {
 }
 
 struct FlyingMuseum {
-    func flyingDemo(flyingObject: CanFly) { // requires obj that adopts CanFly
+    func flyingDemo(flyingObject: CanFly) { // requires an obj that adopts CanFly
         flyingObject.fly()
     }
 }
@@ -465,7 +465,7 @@ struct FlyingMuseum {
 ## Delegate Design Pattern - with Protocol
 
 ```swift
-// define the required func in protocol, no implementation
+// define the required functions in protocol, but no implementation
 protocol AdvancedLifeSupport {
     func performCPR()
 }
@@ -538,20 +538,21 @@ func multiply(n1: Int, n2: Int) -> Int {
 calculator(n1: 2, n2: 3, operation: add)         // 5
 calculator(n1: 2, n2: 3, operation: multiply)    // 6
 
-// closure syntax
+// closure syntax - multiply
 { (n1: Int, n2: Int) -> Int in
     return n1 * n2
 }
+
 calculator(n1: 2, n2: 3, operation: { (n1: Int, n2: Int) -> Int in
     return n1 * n2
 })
-calculator(n1: 2, n2: 3, operation: { (no1, no2) in no1 * no2 })      // 6
+calculator(n1: 2, n2: 3, operation: { (n1, n2) in n1 * n2 })      // 6
 calculator(n1: 2, n2: 3, operation: { $0 * $1 })
 calculator(n1: 2, n2: 3) { $0 * $1 }
 
 let array = [1, 2, 3, 4, 5, 6]
-func addOne (n1: Int) -> Int {
-    return n1 + 1
+func addOne (n: Int) -> Int {
+    return n + 1
 }
 array.map(addOne)
 
@@ -571,6 +572,7 @@ struct WeatherModel {
     let cityName: String
     let temperature: Double
 
+    // computed property, have to be var
     var temperatureString: String {
         return String(format: "%.1f", temperature)
     }

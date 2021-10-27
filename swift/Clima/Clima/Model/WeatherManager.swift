@@ -19,16 +19,16 @@ struct WeatherManager {
     func fetchWeather(cityName: String) {
         let urlString = "\(weatherURL)&q=\(cityName)"
         print(urlString)
-        performrequest(with: urlString)
+        performRequest(with: urlString)
     }
     
     func fetchWeather(latitude: CLLocationDegrees, longitute: CLLocationDegrees) {
         let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitute)"
         print(urlString)
-        performrequest(with: urlString)
+        performRequest(with: urlString)
     }
     
-    func performrequest(with urlString: String) {
+    func performRequest(with urlString: String) {
         // 1. create an url
         if let url = URL(string: urlString) {
             // 2. create a urlSession

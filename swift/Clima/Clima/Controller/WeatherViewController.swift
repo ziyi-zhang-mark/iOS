@@ -40,14 +40,7 @@ extension WeatherViewController: UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if let city = searchTextField.text {
-            weatherManager.fetchWeather(cityName: city)
-        }
-        
-        searchTextField.text = ""
-    }
-    
+    // validation before end editing
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if textField.text != "" {
             return true
@@ -56,6 +49,14 @@ extension WeatherViewController: UITextFieldDelegate {
             return false
         }
      }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let city = searchTextField.text {
+            weatherManager.fetchWeather(cityName: city)
+        }
+        
+        searchTextField.text = ""
+    }
 }
 
 //MARK: - WeatherManagerDelegate
