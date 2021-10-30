@@ -312,15 +312,6 @@ let present: XmasPresent? = XmasPresent()
 present?.surprise()
 ```
 
-## Properties
-
-```swift
-// calculated properties
-var bonus: Int {
-  return teamSize * 1000
-}
-```
-
 ## Designated & Convenience Initializer
 
 ```swift
@@ -369,8 +360,8 @@ for item in array {
 var myArray: [String] = ["Dog", "Car", "Bird"]
 
 // how to declare an empty array
-var emptyArray:[String] = []
-var emptyArray2 = [String]()
+var emptyArray: [String] = []
+var emptyArray = [String]()
 
 
 myArray.insert("Frog", at: 0)
@@ -567,6 +558,12 @@ array.map{$0 + 1}
 ## Computed Property
 
 ```swift
+
+// calculated properties
+var bonus: Int {
+  return teamSize * 1000
+}
+
 struct WeatherModel {
     let conditionId: Int
     let cityName: String
@@ -606,7 +603,6 @@ struct WeatherModel {
 ```swift
 class Animal {
     var name: String
-
     init(name: String) {
         self.name = name
     }
@@ -614,36 +610,40 @@ class Animal {
 class Human: Animal {
     func code() {...}
 }
+
 class Fish: Animal {
     func breathUnderWater() {...}
 }
 
-let h1 = Human(name: "human 1")
-let h2 = Human(name: "human 2")
-let f1 = Fish(name: "fish 1")
+let human1 = Human(name: "human 1")
+let human2 = Human(name: "human 2")
+let fish1 = Fish(name: "fish 1")
 
-let neighbours = [h1, h2, f1] // [Animal]
-let neighbour1 = neighbours[0] // Animal
-
-if neighbours[0] is Human {...} // true
+let neighbours = [human1, human2, fish1] // neighbours type is [Animal]
+let neighbour1 = neighbours[0] // neighbour1 type is Animal
+if neighbours[0] is Human {...} // result to true
 
 func findNemo(from animals: [Animal]) {
     for animal in animals {
         if animal is Fish {
-            print(animal.name)
-            let fish = animal as! Fish
+            print(animal.name)  // type of animal is still Animal
+            let fish = animal as! Fish  // downcast - fish is type Fish 
             fish.breathUnderWater()
+            let animalFish = fish as Animal // animalFish is type Animal
         }
     }
 }
 
-let fish = neighbours[1] as! Fish // run time error: could not cast
-let messageCell = cell as! MessageCell
+let fish = neighbours[1] as! Fish // run time error: could not cast value of type
+let messageCell = cell as! MessageCell  // forced downcast
 
-if let fish = neighbours[1] as? Fish { // fish will be the type Fish? - optional
+let fish = neighbours[1] as? Fish // fish is type Fish? - optional
+if let fish = neighbours[1] as? Fish {
     fish.breathUnderWater()
 }
-if let messageCell = cell as? MessageCell {...} else {...}
+if let messageCell = cell as? MessageCell {
+    ...
+} else {...}
 
 let newCell = messageCell as UITableViewCell // up casting - convert to the superclass
 ```
@@ -651,24 +651,24 @@ let newCell = messageCell as UITableViewCell // up casting - convert to the supe
 ## Any, AnyObject, NSObject
 
 - Any: all objects
-- AnyObject: objects derived from classes
-- NSObject: foundation objects only
+- AnyObject: objects derived from classes, NOT struct
+- NSObject: foundation objects only - apple created objects
 
 ```swift
-let neighbours = [h1, h2, f1] // [Animal]
+let neighbours = [human1, human2, fish1] // [Animal]
 let num = 12
-let neighbours: [Any] = [h1, h2, f1, num] // type of [Any]
-// cannot convert Int to AnyObject, Int is struct, rather than class
-let neighbours: [AnyObject] = [h1, h2, f1, num]
+let neighbours: [Any] = [human1, human2, fish1, num] // [Any]
+// cannot convert Int to AnyObject, because Int is struct, NOTclass
+let neighbours: [AnyObject] = [human1, human2, fish1, num] // compile error
 
 let num: NSNumber = 12
 let word: NSString = "abc"
-let array: [NSObject] = [num, word]
+let array: [NSObject] = [num, word]  // NSObject will work with NSNumber and NSString
 ```
 
 ## ViewController LifeCycle
 
-- viewDidLoad() - IBOutlet/IBAction is created and connected, called only once
+- viewDidLoad() - IBOutlet/IBAction is created and connected, called only ONCE
 - viewWillAppear() - just before the view is presented on the screen
 - viewDidAppear() - user is able to see the view
 - viewWillDisappear() - when navigate back or dismiss the view
@@ -678,8 +678,8 @@ let array: [NSObject] = [num, word]
 
 ```swift
 // open the app
-application(\_:didFinishLaunchingWithOptions:)
-scene(\_:willConnectTo:options:)
+application(_:didFinishLaunchingWithOptions:)
+scene(_:willConnectTo:options:)
 viewDidLoad()
 viewWillAppear()
 sceneWillEnterForeground()
@@ -767,3 +767,5 @@ print(tuple1.name)
 
 OpenWeather
 zhangziyi markzhang.800@gmail.com
+
+Course Resource: https://www.appbrewery.co/p/ios-course-resources/
