@@ -3,11 +3,8 @@
 camelCase(Swift preffered)/kebab-case/snake_case
 
 ```swift
-// define a variable
-var firstname = "Tom"
-
-// constent value, cannot be assigned to other value
-let lastname = "Smith"
+var firstname = "Tom"   // define a variable
+let lastname = "Smith"  // constent value, cannot be assigned to other value
 
 a...b   // closed range
 a..<b   // b excluded
@@ -137,7 +134,7 @@ class Person {
         name = "Joe"
     }
 
-    init (_ name:String) {
+    init (_ name: String) {
         self.name = name
     }
 }
@@ -179,7 +176,7 @@ print(employee.role) // Analyst
 // Enemy - class
 // 1. mutable
 // 2. can inherit. 
-// 3. passed by reference, live in heap
+// 3. passed by reference, live in HEAP
 // 4. work with objC code
 let skeleton1 = Enemy(health: 100, attackStrength: 10)
 let skeleton2 = skeleton1
@@ -192,7 +189,7 @@ print(skeleton2.health)         // 80
 // Enemy - struct
 // 1. immutable
 // 2. cannot inherit.
-// 3. passed by value, live in stack
+// 3. passed by value, live in STACK
 // 4. deep copies/no memory leaks/thread safe
 var skeleton1 = Enemy(health: 100, attackStrength: 10)  // HAS TO BE var
 var skeleton2 = skeleton1   // // HAS TO BE var
@@ -316,18 +313,17 @@ present?.surprise()
 
 ```swift
 class Person {
-    var name:String
-    // optional integer
-    var networth:Int?
-    var gender:String!
+    var name: String
+    var networth: Int?  // optional integer
+    var gender: String!
 
-    // designated initializer ensure that the object is ready to be used and all of its properties are initialized
+    // DESIGNATED initializer ensures that the object is ready to be used and all of its properties are initialized
     init() {
         name = "None"
     }
 
-    // convenience initializer is for you to preconfig the object in a certain way. may call designated initializer in it
-    convenience init(_ gender:String, _ networth:Int) {
+    // CONVENIENCE initializer is for you to preconfig the object in a certain way. may call designated initializer in it
+    convenience init(_ gender: String, _ networth: Int) {
         // call the designated initializer to ensure that the object is ready to go
         self.init()
 
@@ -338,10 +334,29 @@ class Person {
 }
 
 let a = Person()
-print(a.name)
+print(a.name)       // None
 print(a.networth)   // nil
 
 let b = Person("male", 12222)
+
+class Polygon {
+    var points: [CGPoint]
+
+    init(points: [CGPoint]) {
+        self.points = points
+    }
+}
+
+convenience init(squareWithLength length: CGFloat) {
+    let points = [
+        CGPoint(x: 0, y: 0),
+        CGPoint(x: length, y: 0),
+        CGPoint(x: length, y: length),
+        CGPoint(x: 0, y: length),
+    ]
+
+    self.init(points: points)
+}
 ```
 
 ## Array
@@ -402,7 +417,7 @@ print(myDictionary["SJD 293"])
 print(myDictionary["1"])        // nil
 
 // remove
-//myDictionary["SJD 293"] = nil
+myDictionary["SJD 293"] = nil
 
 // loop through
 for (key, value) in myDictionary {
@@ -504,7 +519,7 @@ class Surgeon: Doctor {
 
 let emilio = EmergencyCallHandler()
 let pete = Paramedic(handler: emilio)
-// or let angela = Surgeon(handler: emilio)
+let angela = Surgeon(handler: emilio)
 
 emilio.assessSituation()
 emilio.medicalEmergency()
@@ -553,49 +568,6 @@ array.map({ (n1: Int) -> Int in
 array.map({ n1 in n1 + 1 })
 array.map{$0 + 1}
 
-```
-
-## Computed Property
-
-```swift
-
-// calculated properties
-var bonus: Int {
-  return teamSize * 1000
-}
-
-struct WeatherModel {
-    let conditionId: Int
-    let cityName: String
-    let temperature: Double
-
-    // computed property, have to be var
-    var temperatureString: String {
-        return String(format: "%.1f", temperature)
-    }
-
-    // computed property, have to be var
-    var conditionName: String {
-        switch conditionId {
-        case 200...232:
-            return "cloud.bolt"
-        case 300...321:
-            return "cloud.drizzle"
-        case 500...531:
-            return "cloud.rain"
-        case 600...622:
-            return "cloud.snow"
-        case 701...781:
-            return "cloud.fog"
-        case 800:
-            return "sun.max"
-        case 801...804:
-            return "cloud.bolt"
-        default:
-            return "cloud"
-        }
-    }
-}
 ```
 
 ## as, as?, as!
@@ -699,6 +671,47 @@ application(_:didDiscardSceneSessions:)
 ```
 
 ## Computed Property
+
+```swift
+// calculated properties
+var bonus: Int {
+  return teamSize * 1000
+}
+
+struct WeatherModel {
+    let conditionId: Int
+    let cityName: String
+    let temperature: Double
+
+    // computed property, have to be var
+    var temperatureString: String {
+        return String(format: "%.1f", temperature)
+    }
+
+    // computed property, have to be var
+    var conditionName: String {
+        switch conditionId {
+        case 200...232:
+            return "cloud.bolt"
+        case 300...321:
+            return "cloud.drizzle"
+        case 500...531:
+            return "cloud.rain"
+        case 600...622:
+            return "cloud.snow"
+        case 701...781:
+            return "cloud.fog"
+        case 800:
+            return "sun.max"
+        case 801...804:
+            return "cloud.bolt"
+        default:
+            return "cloud"
+        }
+    }
+}
+```
+
 ```swift
 let pizzaInInches: Int = 16
 var numberOfPeople: Int = 12
@@ -712,6 +725,7 @@ var numberOfSlices: Int {
     }
 }
 
+// getter & setter
 var numberOfPizza: Int {
     get {
         let numberOfPeopleFedPerPizza =  numberOfSlides / slicesPerPerson
@@ -743,9 +757,9 @@ pizzaInInches = 8
 
 ## Access Level
 ```swift
-private - {} block
-fileprivate - file
-internal(default) - inside the current app module
+private - {} block scope
+fileprivate - file scope
+internal(default) - inside the current app module, e.g. clima project
 public - other modules
 open - other modules + allow class or functions to be subclassed or overridden
 ```
@@ -761,6 +775,19 @@ Tuple
 let tuple1: (name: String, age: Int)
 tuple1 = (name: "Angela", age: 21)
 print(tuple1.name)
+```
+
+## Singleton
+```swift
+class Car {
+    var color = "Red"
+    static let singletonCar = Car()
+}
+
+let myCar = Car.singletonCar
+meCar.color = "Blue"
+let yourCar = Car.singletonCar
+print(yourCar.color)  // Blue
 ```
 
 ---
