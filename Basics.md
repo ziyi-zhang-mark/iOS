@@ -441,47 +441,6 @@ if fredTheZombie is Zombie {...}
 ```
 
 ```swift
-class Employee {
-    var name = "name"
-    var salary = 0
-    var role = ""
-
-    func doWork() {
-        print("My name is \(name) and I'm doing the work")
-        salary += 1;
-    }
-}
-let employee = Employee()
-
-// inheritance
-class Manager: Employee {
-    var teamSize = 0
-
-    override func doWork() {
-        super.doWork()                // My name is Maggie and I'm doing the work
-        print("I'm managing people")  // I'm managing people
-        salary += 2
-    }
-
-    func firePeople() {
-        print("I'm firing people")
-    }
-}
-
-let e: Employee = Employee()
-e.name = "Tom"
-e.doWork()
-
-var m = Manager()
-m.name = "Maggie"
-m.salary = 2000
-m.role = "Manager of IT"
-m.teamSize = 10
-m.doWork()
-m.firePeople()
-```
-
-```swift
 class Person {
     var name = ""
     init() {
@@ -781,8 +740,8 @@ func experimentWithScopes() {
     let volunteerAverages = [10.75, 4.2, 1.5, 12.12, 16.815]
     let roundedAveragesAsStrings = format(numbers: volunteerAverages, using: rounder)
     let exactAveragesAsStrings = format(numbers: volunteerAverages) // ["10.75", "4.2", "1.5", "12.12", "16.815"]
+    print(numberOfTransformations) // 5
 }
-print(numberOfTransformations) // 5
 ```
 
 ## as, as?, as!
@@ -806,7 +765,7 @@ let human1 = Human(name: "human 1")
 let human2 = Human(name: "human 2")
 let fish1 = Fish(name: "fish 1")
 
-let neighbours = [human1, human2, fish1] // neighbours type is [Animal]
+let neighbours = [human1, human2, fish1] // neighbours type will be [Animal]
 let neighbour1 = neighbours[0] // neighbour1 type is Animal
 if neighbours[0] is Human {...} // result to true
 
@@ -856,7 +815,7 @@ let array: [NSObject] = [num, word]  // NSObject will work with NSNumber and NSS
 
 #### Nested & Lazy stored properties
 
-Sometimes a stored property’s value cannot be assigned immediately. The necessary information may be available, but computing the values of a property immediately would be costly in terms of memory or time. Or, perhaps a property depends on factors external to the type that will be unknown until after the instance is created. These circumstances call for `lazy loading`.
+Sometimes a `stored` property’s value cannot be assigned immediately. The necessary information may be available, but computing the values of a property immediately would be costly in terms of memory or time. Or, perhaps a property depends on factors external to the type that will be unknown until after the instance is created. These circumstances call for `lazy loading`.
 
 Marking `townSize` as `lazy` indicates to the compiler that this property does not need to have a value for self to be considered fully initialized and that its initial value should instead be assigned the first time it is read.
 
@@ -928,12 +887,13 @@ fredTheZombie.victimPool = 500
 ```
 
 ```swift
-// calculated properties
+// computed properties
 var bonus: Int {
   return teamSize * 1000
 }
 
 struct WeatherModel {
+    // stored property
     let conditionId: Int
     let cityName: String
     let temperature: Double

@@ -1,6 +1,6 @@
 //
 //  MessageCell.swift
-//  Flash Chat iOS13
+//  Flash Chat
 //
 
 import UIKit

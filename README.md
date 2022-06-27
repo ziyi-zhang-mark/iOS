@@ -9,4 +9,4 @@
 OpenWeather
 zhangziyi markzhang.800@gmail.com
 
-Course Resource: https://www.appbrewery.co/p/ios-course-resources/
+Reference: https://www.appbrewery.co/p/ios-course-resources/

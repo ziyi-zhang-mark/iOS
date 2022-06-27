@@ -161,6 +161,10 @@ func printTable(_ dataSource: TabularDataSource & CustomStringConvertible) {
 protocol PrintableTabularDataSource: TabularDataSource, CustomStringConvertible {}
 ```
 
+## Delegate Design Pattern
+
+![](/media/delegate.png)
+
 ## Closure
 
 ```swift
@@ -193,6 +197,7 @@ calculator(n1: 2, n2: 3, operation: { (n1: Int, n2: Int) -> Int in
 })
 calculator(n1: 2, n2: 3, operation: { (n1, n2) in n1 * n2 })      // 6
 calculator(n1: 2, n2: 3, operation: { $0 * $1 })
+// trailing closure
 calculator(n1: 2, n2: 3) { $0 * $1 }
 
 let volunteerCounts = [1, 3, 40, 32, 2, 53, 77, 13]
@@ -314,9 +319,9 @@ func myMap<T,U>(_ items: [T], _ txform: (T) -> (U)) -> [U] {
 }
 
 var intStack = Stack<Int>()
+var doubledStack = intStack.map { 2 * $0 }
 let strings = ["one", "two", "three"]
 let stringLengths = myMap(strings) { $0.count }
-var doubledStack = intStack.map { 2 * $0 }
 
 // type constraints
 func checkIfEqual<T: Equatable>(_ first: T, _ second: T) -> Bool {

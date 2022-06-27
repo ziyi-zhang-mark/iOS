@@ -1,5 +1,3 @@
-## What you will learn
-
 - How to add constraints and understanding how Auto Layout works.
 - How to Pin and Align elements.
 - How to create containers to configure advanced layouts.

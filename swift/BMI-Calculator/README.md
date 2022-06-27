@@ -1,7 +1,3 @@
-# BMI Calculator
-
-## What you will learn
-
 - How to create multi-screen apps with animated navigation.
 - Optional binding, optional chaining and the nil coalescing operator.
 - How to create classes and difference between classes and structs.

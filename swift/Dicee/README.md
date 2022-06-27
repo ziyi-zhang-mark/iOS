@@ -1,7 +1,3 @@
-# Dicee
-
-## Our Goal
-
 - How to clone an existing Xcode project from GitHub.
 - Create an app with behaviour and functionality.
 - Create links between the Interface Builder files and code using IBActions and IBOutlets.

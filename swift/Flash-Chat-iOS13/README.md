@@ -1,7 +1,3 @@
-# Flash-Chat
-
-## What you will learn
-
 - How to integrate third party libraries in your app using Cocoapods and Swift Package Manager.
 - How to store data in the cloud using Firebase Firestore.
 - How to query and sort the Firebase database.
@@ -37,7 +33,6 @@ struct K {
         static let dateField = "date"
     }
 }
-
 ```
 
 ```

@@ -1,9 +1,3 @@
-# Clima
-
-## SF Symbol
-
-## What you will learn
-
 - How to create a dark-mode enabled app.
 - How to use vector images as image assets.
 - Learn to use the UITextField to get user input.
