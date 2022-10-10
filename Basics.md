@@ -6,9 +6,9 @@
 
 - camelCase(Swift preffered)/kebab-case/snake_case
 
-== vs ===
+### == vs ===
 
-- `===` is the identity operator, which checks whether two instances of a class point to `the same memory`. Two objects that were created independently using the same values will be considered equal using `==` but not `===` because they are different objects
+- `===` is the identity operator, which checks whether two instances of a class point to `the same memory`. Two objects that were created independently using the same values will be considered equal using `==` but not `===` because they are different objects.
 - The `===` operator is available only when using **classes** because **structs** are designed so they are always uniquely referenced.
 
 > Note: in js, the `==` operator will compare for equality after doing any necessary type conversions. The `===` operator will not do the conversion, so if two values are not the same type, `===` will simply return false.
@@ -143,7 +143,7 @@ var bucketList = ["a"]
 var bucketList = [String]()
 var bucketList: [String] = []
 
-bucketList[...2]            // first 3 items in the array
+bucketList[...2] // first 3 items in the array
 bucketList.remove(at: 1)
 
 let array: [String] = ["Dog", "Car", "Bird"]
@@ -296,6 +296,7 @@ enum TextAlignment {
     case center
 }
 var alignment: TextAlignment = TextAlignment.left
+
 switch alignment {
 case .left:
     print("left aligned")
@@ -324,8 +325,7 @@ enum TextAlignment: Int {
 // convert raw values to enum
 let myRawValue = 20
 if let myAlignment = TextAlignment(rawValue: myRawValue) {
-    print("successfully created \(myAlignment) from \(myRawValue)")
-    // successfully created left from 20
+    print("created \(myAlignment) from \(myRawValue)") // created left from 20
 }
 
 // enum with strings
@@ -396,10 +396,10 @@ print("rectangle's area = \(rectShape.area())")
 
 - A `struct` is a type that groups a set of related chunks of data together **in memory**.
 
-- Both `structures` and `enumerations` require the `mutating` keyword on methods that change the value of an instance’s properties.
-  The `mutating` keyword asks the compiler to make the implicit `self` argument `inout`, so that the instance method can make changes to the original value the method was called on, instead of a copy
+- Both `structures` and `enumerations` require the `mutating` keyword on methods to change the value of an instance’s properties.
+  The `mutating` keyword asks the compiler to make the implicit `self` argument `inout`, so that the instance method can make changes to the original value the method was called on, instead of a copy.
 
-- `structures` and `enumerations` do not have `inheritance`
+- `struct`s and `enum`s do not have `inheritance`
 
 ```swift
 struct Town {
@@ -407,7 +407,7 @@ struct Town {
     var citizens: [String]
     var resources: [String: Int]
 
-    // initializer - optional for struct, will have an empty and full initializer
+    // initializer - optional for struct, will have an empty and full initializer by default
     init(name: String, citizens: [String], resources: [String: Int]) {
         self.name = name
         self.citizens = citizens
@@ -419,7 +419,7 @@ struct Town {
         print("Defenses increased!");
     }
 
-    // can only change a property using mutating within struct
+    // can only change a class property in func using mutating keyword in struct
     mutating func harvestRice() {
         resources["Rice"] = 100
     }
@@ -485,9 +485,9 @@ print(employee.role) // Analyst
 
 ## Class & Struct
 
-A `struct` (or `enum`) variable stores the instance's entire value, we say that structs and enums are `value types`. You have also seen this behavior in the `Int`, `Float`, `Double`, `Bool`, etc. types. That is because they are also value types. In fact, they are implemented as structs in the Swift standard library.
+A `struct` (or `enum`) variable stores the instance's entire value, `struct`s and `enum`s are `value types`, as the same behavior in the `Int`, `Float`, `Double`, `Bool`, etc. types. They are all value types. In fact, they are implemented as structs in the Swift standard library.
 
-`Class`, on the other hand, only use a variable to store a reference to some other location in memory where the instance's actual content is stored. i.e. `reference types`. That other location is managed by the system. You manage and pass around copies of your reference, and the system will manage the lifetime of the memory your variable refers to.
+`Class`, on the other hand, only use a variable to store a reference to some location in memory where the instance's actual content is stored. i.e. `reference types`. That location is managed by the system. You manage and pass around copies of your reference, and the system will manage the lifetime of the memory your variable refers to.
 
 A `class` variable does not store all the bytes that make up the instance of the class, like a `struct` variable does. Since a `class` variable only stores a reference to where the real bytes are, setting `frederickTheZombie = fredTheZombie` merely means that `frederickTheZombie` contains a reference to the same bytes in memory that `fredTheZombie` does. Both variables refer to the same actual Zombie in memory, and you can use either reference to access the instance's name.
 
@@ -618,9 +618,10 @@ var convenientZombie = Zombie(limp: true, fallingApart: false)
 fredTheZombie = nil // deinit() calls
 
 /**
- When you have a struct or enum variable, all the memory the instance needs to store its content is inside that variable.
- For example, a Town instance contains two Ints. Each Int is 64 bits (8 bytes) in size, so a variable that contains a Town takes up at least 16 bytes of memory.
- If you duplicate the variable, you duplicate the entire instance, copying its memory into the new variable.
+    When you have a struct or enum variable, all the memory the instance needs to store its content is inside that variable.
+    For example, a Town instance contains two Ints. Each Int is 64 bits (8 bytes) in size,
+    so a variable that contains a Town takes up at least 16 bytes of memory.
+    If you duplicate the variable, you duplicate the entire instance, copying its memory into the new variable.
  */
 var yourTown = myTown // Now there are two towns!
 
@@ -637,7 +638,9 @@ fredTheZombie.town?.printDescription()
 // Population: 5912; number of stoplights: 4
 
 /**
- when the program runs, fredTheZombie will contain an instance of Zombie, which has a walksWithLimp property. But the compiler complains that you said the variable might hold any Monster, so it cannot let you do Zombie-specific things to it.
+    when the program runs, fredTheZombie will contain an instance of Zombie, which has a walksWithLimp property.
+    But the compiler complains that you said the variable might hold any Monster,
+    so it cannot let you do Zombie-specific things to it.
 */
 // fredTheZombie.walksWithLimp = true // compile error
 (fredTheZombie as? Zombie)?.walksWithLimp = true
@@ -794,7 +797,7 @@ let newCell = messageCell as UITableViewCell // up casting - convert to the supe
 ## Any, AnyObject, NSObject
 
 - Any: all objects
-- AnyObject: objects derived from classes, NOT struct
+- AnyObject: objects derived from `class`es, **NOT** `struct`
 - NSObject: foundation objects only - apple created objects
 
 ```swift
@@ -887,10 +890,6 @@ fredTheZombie.victimPool = 500
 ```
 
 ```swift
-// computed properties
-var bonus: Int {
-  return teamSize * 1000
-}
 
 struct WeatherModel {
     // stored property
@@ -986,7 +985,7 @@ struct Town {
 }
 ```
 
-`Classes` can also have stored and computed `type properties`, which use the same static syntax as `structs`. Subclasses cannot override a type property from their superclass. If you want a subclass to be able to provide its own implementation of the property, you use the `class` keyword instead.
+`Classes` can also have stored and computed `type properties`, which use the same static syntax as `struct`s. Subclasses cannot override a type property from their superclass. If you want a subclass to be able to provide its own implementation of the property, you use the `class` keyword instead.
 
 ```swift
 class Monster {
@@ -1017,10 +1016,9 @@ class Zombie: Monster {
 ## Value types vs Reference types
 
 - `value types` are **copied** when they are assigned to an `instance` or passed as an argument to a `function`.
-- Array, Dictionary, Int, String are all value types - implemented as structs
-- But for an instance of a `reference type`, these two actions create an additional reference to the same underlying instance
-- `Reference type` variable is always 64 bits (8 bytes)
-- Contrast that with a struct instance being passed around with 500 integers inside it. Every time that struct instance is passed, 4 more kilobytes are allocated to hold the new copy of the struct.
+- `Array`, `Dictionary`, `Int`, `String` are all value types - implemented as structs.
+- `Reference type` variable is always 64 bits (8 bytes), it will create an additional reference to the same underlying instance.
+- Contrast that with a `struct` instance being passed around with 500 integers inside it. Every time that `struct` instance is passed, 4 more kilobytes are allocated to hold the new copy of the `struct`.
 
 ```swift
 class Employee {
@@ -1058,45 +1056,45 @@ All Swift’s basic data types (String, Int, Float, Double, Array, Set, and Dict
 
 Identity refers to whether two `references` point to the same instance `in memory`.
 
-Check for identity on two new instances using the identity operator (===) to see whether they point to the same instance.
+Check for identity on two new instances using the `identity operator (===)` to see whether they point to the same instance.
 
 ### var vs let
 
-Value type
+- Value type
 
-```swift
-struct Hack {
-    var platform: String
-    let claps: Int
-}
+  ```swift
+  struct Hack {
+      var platform: String
+      let claps: Int
+  }
 
-let constantBlog = Hack(platform: "ios", claps: 140)
-constantBlog.platform = "android"   // Cannot assign to property: ‘constantBlog’ is a ‘let’ constant.
-constantBlog.claps = 150            // Cannot assign to property: ‘claps’ is a ‘let’ constant.
+  let constantBlog = Hack(platform: "ios", claps: 140)
+  constantBlog.platform = "android"   // Cannot assign to property: ‘constantBlog’ is a ‘let’ constant.
+  constantBlog.claps = 150            // Cannot assign to property: ‘claps’ is a ‘let’ constant.
 
-var variableBlog = Hack(platform: "ios", claps: 140)
-variableBlog.platform = "android"
-variableBlog.claps = 150            // Cannot assign to property: ‘claps’ is a ‘let’ constant.
-```
+  var variableBlog = Hack(platform: "ios", claps: 140)
+  variableBlog.platform = "android"
+  variableBlog.claps = 150            // Cannot assign to property: ‘claps’ is a ‘let’ constant.
+  ```
 
-Reference type
+- Reference type
 
-```swift
-class Hack {
-    var platform: String
-    let claps: Int
+  ```swift
+  class Hack {
+      var platform: String
+      let claps: Int
 
-    init(platform: String, claps: Int) {
-        self.platform = platform
-        self.claps = claps
-    }
-}
+      init(platform: String, claps: Int) {
+          self.platform = platform
+          self.claps = claps
+      }
+  }
 
-let constantblog = Hack(platform: "ios", claps: 140)
-constantblog.platform = "android"
-constantblog.claps = 150            // Cannot assign to property: ‘claps’ is a ‘let’ constant
+  let constantblog = Hack(platform: "ios", claps: 140)
+  constantblog.platform = "android"
+  constantblog.claps = 150            // Cannot assign to property: ‘claps’ is a ‘let’ constant
 
-var variableBlog = Hack(platform: "ios", claps: 140)
-variableBlog.platform = "android"
-variableBlog.claps = 150            // Cannot assign to property: ‘claps’ is a ‘let’ constant
-```
+  var variableBlog = Hack(platform: "ios", claps: 140)
+  variableBlog.platform = "android"
+  variableBlog.claps = 150            // Cannot assign to property: ‘claps’ is a ‘let’ constant
+  ```

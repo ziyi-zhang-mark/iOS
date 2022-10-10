@@ -12,7 +12,7 @@ let area = sideLength.squared
 
 ### Extend Own Type
 
-`structs` give you a free memberwise initializer if you do not provide your own. If you want to write a new initializer for your `struct` but do not want to lose the free memberwise or empty initializer, you can add the initializer to your` type` with an `extension`.
+`structs` give you a free memberwise initializer if you do not provide your own. If you want to write a new initializer for your `struct` but do not want to lose the free memberwise or empty initializer, you can add the initializer to your `type` with an `extension`.
 
 ```swift
 struct Car {
@@ -25,18 +25,21 @@ struct Car {
         }
     }
 }
+
 // Add protocol conformance
 extension Car: CustomStringConvertible {
     var description: String {
         return "\(year) \(make) \(model), fuel level: \(fuelLevel)"
     }
 }
+
 // Add initializer
 extension Car {
     init(make: String, model: String, year: Int) {
         self.init(make: make, model: model, year: year, fuelLevel: 1.0)
     }
 }
+
 let firstCar = Car(make: "Benz", model: "Patent-Motorwagon", year: 1886, fuelLevel: 0.5)
 var currentCar = Car(make: "Honda", model: "Civic", year: 2008)
 firstCar.fuelLevel // 0.5
