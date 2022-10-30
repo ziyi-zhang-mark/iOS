@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "5kE-8o-EEo"; */
+"5kE-8o-EEo.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "LootLogger"; ObjectID = "7Ct-Vm-fSK"; */
+"7Ct-Vm-fSK.title" = "LootLogger";
+
+/* Class = "UILabel"; text = "Serial"; ObjectID = "8Kd-6a-mcp"; */
+"8Kd-6a-mcp.text" = "Serial";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "IFU-GG-1Sd"; */
+"IFU-GG-1Sd.text" = "Name";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "VsI-QI-xNK"; */
+"VsI-QI-xNK.text" = "Label";
+
+/* Class = "UILabel"; text = "Value"; ObjectID = "YJ5-uh-HeW"; */
+"YJ5-uh-HeW.text" = "Value";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fA9-Jw-psj"; */
+"fA9-Jw-psj.text" = "Label";
+
+/* Class = "UILabel"; text = "Date Created"; ObjectID = "wi8-cd-v0u"; */
+"wi8-cd-v0u.text" = "Date Created";

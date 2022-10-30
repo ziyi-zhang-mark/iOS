@@ -126,3 +126,84 @@ Internationalized – its interface is able to adapt to various languages and re
 Localized – update the strings and resources in the application for a new language.
 
 ## UITableView and UITableViewController
+
+![](media/loot-logger-table-view.png)
+
+Interface Builder and the iOS SDK refer to instances of an application’s UI as `scenes`. A `scene` is an instance of `UIScene` and is responsible for managing one instance of an application’s UI.
+
+For `ItemsViewController` to conform to `UITableViewDataSource`, it must implement **tableView(\_:numberOfRowsInSection:)** and **tableView(\_:cellForRowAt:)**. These methods tell the table view how many rows it should display and what content to display in each row.
+
+UITableViewCell
+![](media/table-view-cell.png)
+
+## Subclassing UITableViewCell
+
+## Stack Views
+
+## Saving && Loading
+
+Codable
+
+Property Lists
+
+Sandbox
+
+Scene States
+
+![](media/scene-states.png)
+
+When a scene is not running, it is in the unattached state, and it does not execute any code or have any memory reserved in RAM.
+
+After a scene is launched, it briefly enters the foreground inactive state before entering the foreground active state. When in the foreground active state, a scene’s interface is on the screen, it is accepting events, and its code is handling those events.
+
+While in the active state, a scene can be temporarily interrupted by a system event, like a phone call, or interrupted by a user event, like triggering Siri or opening the task switcher. At this point, the scene reenters the foreground inactive state. In the inactive state, a scene is usually visible and is executing code, but it is not receiving events. Scenes typically spend very little time in the inactive state.
+
+When the user returns to the Home screen or switches to another application, the scene enters the background state. (Actually, it spends a brief moment in the foreground inactive state before transitioning to the background state.) In the background state, a scene’s interface is not visible or receiving events, but it can still execute code.
+
+By default, a scene that enters the background state has about 10 seconds before it enters the suspended state. But your scenes should not rely on having this much time; instead, they should save user data and release any shared resources as quickly as possible.
+
+A scene in the suspended state cannot execute code. You cannot see its interface, and any resources it does not need while suspended are destroyed. A suspended scene is essentially flash-frozen and can be quickly thawed when the user relaunches it.
+
+A scene in the suspended state will remain in that state as long as there is adequate system memory. When the OS decides memory is getting low, it will terminate suspended scenes as needed, moving them to the unattached state.
+
+![](media/scene-state.png)
+
+Notification Center
+
+```swift
+let notificationCenter = NotificationCenter.default
+notificationCenter.addObserver(self,
+                               selector: #selector(retrieveDog(_:)),
+                               name: Notification.Name(rawValue: "LostDog"),
+                               object: nil)
+
+@objc func retrieveDog(_ notification: Notification) {
+    let poster = notification.object
+    let name = notification.name
+    let extraInformation = notification.userInfo
+}
+
+let extraInfo = ["Name": "Fido"]
+let notification = Notification(name: Notification.Name(rawValue: "LostDog"),
+                                object: self,
+                                userInfo: extraInfo)
+NotificationCenter.default.post(notification)
+```
+
+Here are some of the notifications that announce scene state transitions:
+
+- UIScene.willConnectNotification
+- UIScene.didDisconnectNotification
+- UIScene.willEnterForegroundNotification
+- UIScene.didActivateNotification
+- UIScene.willDeactivateNotification
+- UIScene.didEnterBackgroundNotification
+
+## Present AlertController
+
+## Camera, Cache, and Image Persistance
+
+## Adaptive Interfaces
+
+- Size Classes
+- Dark Mode
