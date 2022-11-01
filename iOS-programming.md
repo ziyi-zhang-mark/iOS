@@ -207,3 +207,5 @@ Here are some of the notifications that announce scene state transitions:
 
 - Size Classes
 - Dark Mode
+
+## Extensions and Container View Controller
