@@ -9,28 +9,14 @@ import UIKit
 
 class MoodSelectionViewController: UIViewController {
 
-    @IBOutlet var stackView: UIStackView!
+    @IBOutlet var moodSelector: ImageSelector!
     @IBOutlet var addMoodButton: UIButton!
     
     var moods: [Mood] = [] {
         didSet {
             currentMood = moods.first
-            moodButtons = moods.map { mood in
-                let moodButton = UIButton()
-                moodButton.setImage(mood.image, for: .normal)
-                moodButton.imageView?.contentMode = .scaleAspectFit
-                moodButton.addTarget(self,
-                                     action: #selector(moodSelectionChanged(_:)),
-                                     for: .touchUpInside)
-                return moodButton
-            }
-        }
-    }
-    
-    var moodButtons: [UIButton] = [] {
-        didSet {
-            oldValue.forEach { $0.removeFromSuperview() }
-            moodButtons.forEach { stackView.addArrangedSubview($0) }
+            moodSelector.images = moods.map { $0.image }
+            moodSelector.highlightColors = moods.map { $0.color }
         }
     }
     
@@ -43,7 +29,12 @@ class MoodSelectionViewController: UIViewController {
             }
             
             addMoodButton.setTitle("I'm \(currentMood.name)", for: .normal)
-            addMoodButton.backgroundColor = currentMood.color
+            
+            let selectionAnimator = UIViewPropertyAnimator(duration: 0.3,
+                                                           dampingRatio: 0.7) {
+                self.addMoodButton.backgroundColor = currentMood.color
+            }
+            selectionAnimator.startAnimation()
         }
     }
     
@@ -65,10 +56,8 @@ class MoodSelectionViewController: UIViewController {
         addMoodButton.layer.cornerRadius = addMoodButton.bounds.height / 2
     }
 
-    @objc func moodSelectionChanged(_ sender: UIButton) {
-        guard let selectedIndex = moodButtons.firstIndex(of: sender) else {
-            preconditionFailure("Unable to find the tapped button in the buttons array.")
-        }
+    @IBAction private func moodSelectionChanged(_ sender: ImageSelector) {
+        let selectedIndex = sender.selectedIndex
         currentMood = moods[selectedIndex]
     }
     
