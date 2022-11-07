@@ -339,3 +339,19 @@ print(checkIfDescriptionsMatch(Int(1), UInt(1))) // T
 print(checkIfDescriptionsMatch(1, 1.0)) // F
 print(checkIfDescriptionsMatch(Float(1.0), Double(1.0))) // T
 ```
+
+### Pattern Match for Enum Case
+
+```swift
+// Result<UIImage, Error>
+if case let .success(image) = result {
+    photo.image = image
+}
+// behaves just like this code:
+switch result {
+    case let .success(image):
+        photo.image = image
+    case .failure:
+        break
+}
+```

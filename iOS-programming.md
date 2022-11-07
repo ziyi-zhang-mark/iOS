@@ -213,3 +213,49 @@ Here are some of the notifications that announce scene state transitions:
 ## Custom Controls
 
 ## Animations
+
+## Web Service
+
+URLSessionTask
+
+- URLSessionDataTask
+- URLSessionDownloadTask
+- URLSessionUploadTask
+
+```swift
+// Result<[Photo], Error> defines a `Result` where the success case is associated with an array of photos
+// and the failure case is associated with any Error.
+static func photos(fromJSON data: Data) -> Result<[Photo], Error> {
+    do {
+        let decoder = JSONDecoder()
+        let flickrResponse = try decoder.decode(FlickrResponse.self, from: data)
+        return .success(flickrResponse.photosInfo.photos)
+    } catch {
+        return .failure(error)
+    }
+}
+```
+
+Notice that this new method returns a `Result` type. `Result` is an `enumeration` defined within the Swift standard library that is useful for encapsulating the result of an operation that might succeed or fail.
+
+Result has two cases, `success` and `failure`, and each of these cases has an associated value that
+represents the successful value and error, respectively.
+
+For `Result`, there are two placeholders that you define: what kind of value it should contain on success and what kind of value it should contain on failure. Notice the `where` clause at the end, this limits the `failure` associated value to be some kind of Error.
+
+```swift
+public enum Result<Success, Failure> where Failure : Error {
+    /// A success, storing a `Success` value.
+    case success(Success)
+    /// A failure, storing a `Failure` value.
+    case failure(Failure)
+}
+```
+
+## Collection View
+
+Collection View Data Source
+
+## Core Data
+
+## Core Data Relationships
